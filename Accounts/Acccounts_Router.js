@@ -50,49 +50,50 @@ router.post('/', (req, res) => {
 
 });
 
-// router.put('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
 
-//     const {id} = req.params;
-//     const changes = req.body;
-//     //UPDATE Posts SET changes.hey = changes.value WHERE id = id;
-//     db('posts').where({id}).update(changes)
-//     .then(count => {
-//         if(count){
-//             res.json({updated:count})
-//         } else {
-//             res.status(404).json({message:"invalid post id"})
-//         }
+    const {id} = req.params;
+    const changes = req.body;
 
-//     })
-//     .catch(err =>{
-//         res.status(500).json({message:"failed to update post"})
-//     }
-
-//     )
-
-// });
-
-// router.delete('/:id', (req, res) => {
-
-
-//     const {id} = req.params;
    
-//     //DELETE from Posts WHERE id = id
-//     db('posts').where({id}).del()
-//     .then(count => {
-//         if(count){
-//             res.json({deleted:count})
-//         } else {
-//             res.status(404).json({message:"invalid post id"})
-//         }
+    db('accounts').where({id}).update(changes)
+    .then(count => {
+        if(count){
+            res.json({updated:count})
+        } else {
+            res.status(404).json({message:"invalid account id"})
+        }
 
-//     })
-//     .catch(err =>{
-//         res.status(500).json({message:"failed to delete post"})
-//     }
+    })
+    .catch(err =>{
+        res.status(500).json({message:"failed to update account"})
+    }
 
-//     )
+    )
 
-// });
+});
+
+router.delete('/:id', (req, res) => {
+
+
+    const {id} = req.params;
+   
+   
+    db('accounts').where({id}).del()
+    .then(count => {
+        if(count){
+            res.json({deleted:count})
+        } else {
+            res.status(404).json({message:"invalid account id"})
+        }
+
+    })
+    .catch(err =>{
+        res.status(500).json({message:"failed to delete account"})
+    }
+
+    )
+
+});
 
 module.exports = router;
